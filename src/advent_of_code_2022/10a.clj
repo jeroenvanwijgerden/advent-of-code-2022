@@ -33,7 +33,9 @@
                register-during-cycle))
 
 
-(let [register-during-cycle (register-during-cycle 1 instructions)]
-  (reduce + (take 6 (->> (signal-strength-during-cycle register-during-cycle)
-                         (drop 19)
-                         (take-nth 40)))))
+(->> (register-during-cycle 1 instructions)
+     signal-strength-during-cycle
+     (drop 19)
+     (take-nth 40)
+     (take 6)
+     (reduce +))
